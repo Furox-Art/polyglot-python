@@ -1,0 +1,38 @@
+site_name: polyglot-python
+site_url: https://furox-art.github.io/polyglot-python/
+site_description: >-
+  Write Python in your own language, deterministically. A keyword transpiler for
+  Turkish, Spanish, Portuguese, German, French, Chinese, Hindi and Arabic that
+  keeps Python's grammar and maps localized keywords to the real ones.
+site_author: Furox-Art
+repo_url: https://github.com/Furox-Art/polyglot-python
+repo_name: Furox-Art/polyglot-python
+edit_uri: edit/main/docs/
+copyright: Released under the MIT License
+
+theme:
+  name: material
+  icon:
+    repo: fontawesome/brands/github
+  palette:
+    - media: "(prefers-color-scheme: light)"
+      scheme: default
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/brightness-7
+        name: Switch to dark mode
+    - media: "(prefers-color-scheme: dark)"
+      scheme: slate
+      primary: teal
+      accent: cyan
+      toggle:
+        icon: material/brightness-4
+        name: Switch to light mode
+  features:
+    - navigation.top
+    - content.code.copy
+
+nav:
+  - Home: index.md
+  - Roadmap: phase-2-plan.md
