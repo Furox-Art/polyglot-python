@@ -1,0 +1,50 @@
+# Pre-commit hooks for polyglot-python
+#
+# Install once after cloning:
+#   pip install pre-commit
+#   pre-commit install
+#
+# Run on demand:
+#   pre-commit run --all-files
+#
+# These are file-hygiene hooks only. They never rewrite Python source, so
+# running them on the whole repository produces no diff to contributor code.
+#
+# ruff is deliberately NOT a hook here.
+#
+# The sibling scientific-computing-system repository runs `ruff` and
+# `ruff-format` as hooks because its CI enforces them. This repository's CI
+# (.github/workflows/ci.yml) does not run ruff, and the current tree is not
+# ruff-clean. Measured with ruff 0.16.9 over src/ and tests/:
+#
+#   ruff check src tests        -> 8 findings
+#   ruff format --diff src tests -> 5 files would be reformatted
+#
+# Adding those hooks now would either fail on `pre-commit run --all-files` or
+# mass-reformat existing source and tests, which is a separate, reviewable
+# change. If you decide to adopt ruff, do it as one commit (config plus the
+# resulting reformat) and wire the same command into CI at the same time, then
+# uncomment the block below.
+
+repos:
+  - repo: https://github.com/pre-commit/pre-commit-hooks
+    rev: v5.0.0
+    hooks:
+      - id: trailing-whitespace
+      - id: end-of-file-fixer
+      - id: check-yaml
+      - id: check-toml
+      - id: check-json
+      - id: check-added-large-files
+        args: ["--maxkb=512"]
+      - id: check-merge-conflict
+      - id: check-case-conflict
+      - id: mixed-line-ending
+        args: ["--fix=lf"]
+
+  # - repo: https://github.com/astral-sh/ruff-pre-commit
+  #   rev: v0.16.9
+  #   hooks:
+  #     - id: ruff
+  #       args: ["--fix", "--exit-non-zero-on-fix"]
+  #     - id: ruff-format

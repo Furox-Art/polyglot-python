@@ -1,0 +1,42 @@
+cff-version: 1.2.0
+message: "If you use this software, please cite it using the metadata from this file."
+type: software
+title: "polyglot-python"
+# Keep `version` in lockstep with pyproject.toml [project].version,
+# src/polyglot_python/__init__.py and npm/package.json.
+# tests/test_metadata.py enforces this.
+version: "0.2.1"
+authors:
+  - name: "Furox-Art"
+    email: "furkanarkn1451@gmail.com"
+abstract: >-
+  Deterministic multilingual Python keyword transpiler. You keep Python's
+  grammar and write programs with localized keywords; polyglot-python maps
+  those keywords to the real Python keywords and hands the result to CPython.
+  No AI, no network, no randomness: the same source, locale and version always
+  produce byte-identical Python. Ships 20 locale tables (ar, de, el, es, fr, hi,
+  id, it, ja, ko, nl, pl, pt, ro, ru, sv, tr, uk, vi, zh), a command-line
+  interface with run, translate, check, locales and keywords subcommands, and
+  no runtime dependencies.
+license: MIT
+repository-code: "https://github.com/Furox-Art/polyglot-python"
+url: "https://github.com/Furox-Art/polyglot-python"
+date-released: "2026-11-01"
+keywords:
+  - "python"
+  - "transpiler"
+  - "localization"
+  - "multilingual"
+  - "internationalization"
+  - "deterministic"
+  - "source-to-source"
+  - "keywords"
+  - "programming languages"
+preferred-citation:
+  type: software
+  title: "polyglot-python"
+  authors:
+    - name: "Furox-Art"
+  year: 2026
+  version: "0.2.1"
+  url: "https://github.com/Furox-Art/polyglot-python"
