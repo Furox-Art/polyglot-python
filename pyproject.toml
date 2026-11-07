@@ -45,3 +45,11 @@ polyglot_python = ["locales.json"]
 [tool.pytest.ini_options]
 pythonpath = ["src"]
 testpaths = ["tests"]
+
+[tool.coverage.report]
+# `python -m pytest --cov --cov-fail-under=100` already passes on this tree.
+# Recording the threshold in the shared configuration makes a plain
+# `coverage report` enforce the same gate. Branch coverage is not enabled: it
+# was never measured, so turning it on could lower the number for reasons
+# unrelated to this change.
+fail_under = 100
