@@ -1,9 +1,9 @@
 site_name: polyglot-python
 site_url: https://furox-art.github.io/polyglot-python/
 site_description: >-
-  Write Python in your own language, deterministically. A keyword transpiler for
-  Turkish, Spanish, Portuguese, German, French, Chinese, Hindi and Arabic that
-  keeps Python's grammar and maps localized keywords to the real ones.
+  Write Python in your own language, deterministically. A keyword transpiler
+  for 20 locales that keeps Python's grammar and maps localized keywords to
+  the real Python keywords.
 site_author: Furox-Art
 repo_url: https://github.com/Furox-Art/polyglot-python
 repo_name: Furox-Art/polyglot-python

@@ -30,6 +30,10 @@ All notable changes to this project are documented here. The format follows
 
 ### Fixed
 
+- The mkdocs site description still advertised the original 8 locales from
+  v0.1.0; it now states the 20 shipped locales. Metadata tests pin the site
+  description and the README locale table to `locales.json` so documentation
+  cannot drift from the shipped locale set again.
 - `run` now executes a program the way `python FILE` does: the script's
   directory leads `sys.path`, so sibling imports work, and the program is
   registered as the `__main__` module.
