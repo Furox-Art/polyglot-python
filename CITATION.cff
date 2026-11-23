@@ -5,7 +5,7 @@ title: "polyglot-python"
 # Keep `version` in lockstep with pyproject.toml [project].version,
 # src/polyglot_python/__init__.py and npm/package.json.
 # tests/test_metadata.py enforces this.
-version: "0.2.1"
+version: "0.2.2"
 authors:
   - name: "Furox-Art"
     email: "furkanarkn1451@gmail.com"
@@ -21,7 +21,7 @@ abstract: >-
 license: MIT
 repository-code: "https://github.com/Furox-Art/polyglot-python"
 url: "https://github.com/Furox-Art/polyglot-python"
-date-released: "2026-11-01"
+date-released: "2026-11-23"
 keywords:
   - "python"
   - "transpiler"
@@ -38,5 +38,5 @@ preferred-citation:
   authors:
     - name: "Furox-Art"
   year: 2026
-  version: "0.2.1"
+  version: "0.2.2"
   url: "https://github.com/Furox-Art/polyglot-python"
