@@ -6,6 +6,10 @@ All notable changes to this project are documented here. The format follows
 
 ## [Unreleased]
 
+## [0.2.2] - 2026-11-23
+
+- Keep direct-script metadata consistent with CPython 3.12–3.15 while satisfying the coverage gate on every tested interpreter.
+
 ### Added
 
 - Six locales: Italian (`it`), Dutch (`nl`), Polish (`pl`), Indonesian (`id`),

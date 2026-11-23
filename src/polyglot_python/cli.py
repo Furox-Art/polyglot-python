@@ -117,9 +117,9 @@ def _run(namespace: argparse.Namespace) -> int:
 
     module = types.ModuleType("__main__")
     module.__file__ = os.path.abspath(namespace.file)
-    if sys.version_info < (3, 15):
-        # CPython 3.15 no longer sets __cached__ on modules.
-        module.__cached__ = None
+    # Only Python versions before 3.15 expose __cached__ on script modules.
+    legacy_metadata = {"__cached__": None} if sys.version_info < (3, 15) else {}
+    module.__dict__.update(legacy_metadata)
     module.__loader__ = SourceFileLoader("__main__", module.__file__)
     module.__dict__["__builtins__"] = builtins
     script_dir = os.path.dirname(module.__file__)
