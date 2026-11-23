@@ -28,6 +28,25 @@ def test_strings_comments_fstrings_untouched():
     assert translate(source, TR).python == source
 
 
+def test_fstring_keeps_debug_name_and_nested_interpolation():
+    source = (
+        'globals()["Doğru"] = 42\n'
+        'eğer Doğru:\n'
+        '    print(f"{Doğru=} {f\'{Doğru}\'}")\n'
+    )
+    translated = translate(source, TR)
+    assert translated.python == source.replace("eğer Doğru:", "if True:")
+    output = io.StringIO()
+    with redirect_stdout(output):
+        exec(compile(translated.python, "<memory>", "exec"), {})
+    assert output.getvalue() == "Doğru=42 42\n"
+
+
+def test_template_string_keeps_interpolation():
+    source = 't"{Doğru=} {f\'{Doğru}\'}"\n'
+    assert translate(source, TR).python == source
+
+
 def test_identifier_substrings_untouched():
     source = "eğerlik = 1\ndeğilseki = 2\n"
     assert translate(source, TR).python == source
