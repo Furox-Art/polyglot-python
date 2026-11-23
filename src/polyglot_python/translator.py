@@ -1,9 +1,9 @@
 """Deterministic translation of localized Python keywords.
 
-Only exact ``NAME`` tokens that match a locale keyword are rewritten; strings,
-comments, f-strings, numbers and attribute names are never touched. Line
-numbers are preserved exactly, and a per-line column map lets callers report
-positions against the original localized source.
+Only exact ``NAME`` tokens that match a locale keyword are rewritten. Strings
+(including f-strings and t-strings), comments, numbers and attribute names stay
+intact. Line numbers are preserved exactly, and a per-line column map lets
+callers report positions against the original localized source.
 """
 
 from __future__ import annotations
@@ -52,6 +52,8 @@ _MESSAGE_KEYS = (
 )
 
 _SIGNIFICANT = (tokenize.NAME, tokenize.OP, tokenize.NUMBER, tokenize.STRING)
+_INTERPOLATED_STRING_START = {tokenize.FSTRING_START, getattr(tokenize, "TSTRING_START", None)}
+_INTERPOLATED_STRING_END = {tokenize.FSTRING_END, getattr(tokenize, "TSTRING_END", None)}
 
 
 class PolyglotError(Exception):
@@ -253,7 +255,18 @@ def translate(text: str, locale: Locale | None) -> Translation:
 
     replacements: dict[int, list[tuple[int, int, str]]] = {}
     previous: tokenize.TokenInfo | None = None
+    string_depth = 0
     for token in tokens:
+        # Replacement fields carry NAME tokens, including inside nested strings.
+        if token.type in _INTERPOLATED_STRING_START:
+            string_depth += 1
+            continue
+        if string_depth:
+            if token.type in _INTERPOLATED_STRING_END:
+                string_depth -= 1
+                if string_depth == 0:
+                    previous = token
+            continue
         after_dot = (
             previous is not None
             and previous.type == tokenize.OP
